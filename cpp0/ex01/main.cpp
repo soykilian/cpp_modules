@@ -12,6 +12,8 @@ int main(void)
 	{
 		if(cmd == "ADD")
 			agenda.ft_new_contact();
+		else if(cmd == "SEARCH")
+			agenda.ft_list_contacts();
 		else if (cmd == "EXIT")
 			break;
 	}

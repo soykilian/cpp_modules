@@ -9,9 +9,9 @@ class Contact {
 			Contact();
 			~Contact();
 			void setContact(std::string, std::string, std::string,std::string,std::string);
-			void printTable();
+			void printTable(int);
+			void printContact();
 	private:
-		int				idx;
 		std::string		first_name;
 		std::string		last_name;
 		std::string		nickname;

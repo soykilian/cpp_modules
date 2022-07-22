@@ -15,3 +15,26 @@ void Contact::setContact(std::string FirstName, std::string LastName,
 	this->phone_number = phoneNumber;
 	this->darkest_secret = darkSecret;
 }
+
+std::string setString(std::string str)
+{
+	if (str.length() > 10)
+		return(str.substr(0,9) + ".");
+	return str;
+}
+
+void Contact::printTable(int i)
+{
+		std::cout << "|" << std::setw(10) << i;
+		std::cout << "|" << std::setw(10) << setString(this->first_name);
+		std::cout << "|" << std::setw(10) << setString(this->last_name);
+		std::cout << "|" << std::setw(10) << setString(this->nickname) << "|\n";
+}
+void Contact::printContact()
+{
+	std::cout << "First Name : " << this->first_name << "\n";
+	std::cout << "Last Name : " << this->last_name << "\n";
+	std::cout << "Nickname : " << this->nickname << "\n";
+	std::cout << "Phone Number : " << this->phone_number << "\n";
+	std::cout << "Darkest Secret : " << this->darkest_secret << "\n";
+}

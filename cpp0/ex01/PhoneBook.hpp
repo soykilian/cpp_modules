@@ -4,10 +4,9 @@
 #include <iostream>
 #include <iomanip>
 
-#define MAX_CONTACT 5
+#define MAX_CONTACT 3
 class PhoneBook{
 	 
-	Contact *contacts[8];
 	public:
 		PhoneBook();
 		~PhoneBook();
@@ -15,7 +14,7 @@ class PhoneBook{
 		void	ft_list_contacts();
 	private:
 		Contact		contact_book[MAX_CONTACT];
-		static int	number_contacts;	
+		int	number_contacts;	
 };
 
 #endif

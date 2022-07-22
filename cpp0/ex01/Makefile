@@ -2,11 +2,11 @@
 NAME				:=		phonebook
 
 # List of sources
-SRCS				:=		Phonebook.cpp main.cpp
+SRCS				:=		PhoneBook.cpp main.cpp Contact.cpp
 OBJS				:=		${SRCS:.cpp=.o}
 
 # Compiler
-CC					:=		clang++
+CC					:=		c++
 
 # Flags - compilation
 FLAG_WARNING		:=		-Wall -Wextra -Werror
@@ -37,7 +37,7 @@ $(NAME):					$(OBJS)
 							@ $(CC) $(FLAGS_COMP) -o $@ $(OBJS)
 
 
-.cpp.o:
+%.o: %.cpp
 							@ $(CC) $(FLAGS_COMP) -c $< -o $@
 
 clean:
