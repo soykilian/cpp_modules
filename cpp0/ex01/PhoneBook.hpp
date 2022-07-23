@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 
-#define MAX_CONTACT 3
+#define MAX_CONTACT 8
 class PhoneBook{
 	 
 	public:

@@ -6,12 +6,10 @@ SRCS				:=		./megaphone.cpp
 OBJS				:=		${SRCS:.cpp=.o}
 
 # Compiler
-CC					:=		clang++
+CC					:=		c++
 
 # Flags - compilation
-FLAG_WARNING		:=		-Wall -Wextra -Werror
-FLAG_DEBUG			:= 		-g
-FLAGS_COMP			:= 		$(FLAG_WARNING) $(FLAG_DEBUG)
+FLAGS_COMP			:= 		-std=c++98 -Werror -Wextra -Wall -pedantic
 
 # Flags - memory leak check
 FLAG_MEM_LEAK		:= 		-fsanitize=address

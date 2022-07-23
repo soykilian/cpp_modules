@@ -6,11 +6,11 @@
 
 class Contact {
 	public:
-			Contact();
-			~Contact();
-			void setContact(std::string, std::string, std::string,std::string,std::string);
-			void printTable(int);
-			void printContact();
+		Contact();
+		~Contact();
+		void setContact(std::string, std::string, std::string,std::string,std::string);
+		void printTable(int);
+		void printContact();
 	private:
 		std::string		first_name;
 		std::string		last_name;

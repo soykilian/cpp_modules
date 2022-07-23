@@ -33,7 +33,7 @@ void PhoneBook::ft_list_contacts()
 	std::cout << "|" << std::setw(10) << "INDEX";
 	std::cout << "|" << std::setw(10) << "First Name";
 	std::cout << "|" << std::setw(10) << "Last Name";
-	std::cout << "|" << std::setw(10) << "Nickname" << "|\n";
+	std::cout << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
 	if (this->number_contacts == 0)
 		return;
 	while (i < this->number_contacts && i < MAX_CONTACT)

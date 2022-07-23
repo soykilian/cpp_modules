@@ -32,9 +32,9 @@ void Contact::printTable(int i)
 }
 void Contact::printContact()
 {
-	std::cout << "First Name : " << this->first_name << "\n";
-	std::cout << "Last Name : " << this->last_name << "\n";
-	std::cout << "Nickname : " << this->nickname << "\n";
-	std::cout << "Phone Number : " << this->phone_number << "\n";
-	std::cout << "Darkest Secret : " << this->darkest_secret << "\n";
+	std::cout << "First Name : " << this->first_name << std::endl;
+	std::cout << "Last Name : " << this->last_name << std::endl;
+	std::cout << "Nickname : " << this->nickname << std::endl;
+	std::cout << "Phone Number : " << this->phone_number << std::endl;
+	std::cout << "Darkest Secret : " << this->darkest_secret << std::endl;
 }

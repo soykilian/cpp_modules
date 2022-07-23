@@ -8,13 +8,13 @@ OBJS				:=		${SRCS:.cpp=.o}
 # Compiler
 CC					:=		c++
 
-# Flags - compilation
-FLAG_WARNING		:=		-Wall -Wextra -Werror
-FLAG_DEBUG			:= 		-g
-FLAGS_COMP			:= 		$(FLAG_WARNING) $(FLAG_DEBUG)
-
 # Flags - memory leak check
 FLAG_MEM_LEAK		:= 		-fsanitize=address
+
+# Flags - compilation
+
+CXXFLAGS  = -std=c++98 -Werror -Wextra -Wall -pedantic
+FLAGS_COMP			:= 		$((CXXFLAGS) $(FLAG_MEM_LEAK)
 
 # Others commands
 RM					:=		rm -rf
