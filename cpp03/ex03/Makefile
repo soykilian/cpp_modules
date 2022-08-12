@@ -1,10 +1,10 @@
-NAME	= fragtrap
+NAME	= diamondtrap
 
 CC		= c++
 
 CFLAGS	= -std=c++98 -Werror -Wextra -Wall -pedantic
 
-SRCS	= main.cpp ClapTrap.cpp FragTrap.cpp
+SRCS	= main.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp ClapTrap.cpp
 
 OBJS	= ${SRCS:.cpp=.o}
 

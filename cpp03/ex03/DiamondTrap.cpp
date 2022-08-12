@@ -19,10 +19,26 @@ DiamondTrap::DiamondTrap(std::string name){
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap &diamond){
-	*this = other;
+	*this = diamond;
 	std::cout << "DiamondTrap copy constructor called." << std::endl;
 }
 DiamondTrap::~DiamondTrap(){
 	std::cout << "DiamondTrap destructor called." << std::endl;
 }
-void	
+DiamondTrap &DiamondTrap::operator=(DiamondTrap &obj){
+	this->name = obj.name;
+	this->ClapTrap::name = obj.ClapTrap::name;
+	this->hit_points = obj.hit_points;
+	this->energy_points = obj.energy_points;
+	this->attack_damage = obj.attack_damage;
+	return (*this);
+}
+
+void DiamondTrap::attack(std::string const &target){
+	this->ScavTrap::attack(target);
+}
+
+void DiamondTrap::whoAmI(void){
+	std::cout << "DiamondTrap " << this->name << " inherits from " << this->ClapTrap::name << std::endl;
+	
+}

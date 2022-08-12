@@ -1,9 +1,9 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-	FragTrap meme;
-	FragTrap diego("diego");
+	DiamondTrap meme;
+	DiamondTrap diego("diego");
 
 
 	diego.attack("meme");
@@ -11,5 +11,6 @@ int main(void)
 	meme.beRepaired(5);
 	diego.beRepaired(10);
 	diego.highFivesGuys();
+	diego.whoAmI();
 	return (0);
 }

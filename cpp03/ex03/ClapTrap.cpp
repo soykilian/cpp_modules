@@ -21,11 +21,9 @@ ClapTrap::ClapTrap(ClapTrap &claptrap){
 	this->attack_damage = claptrap.attack_damage;
 	std::cout << "ClapTrap copy constructor called." << std::endl;
 }
-
 ClapTrap::~ClapTrap(){
 	std::cout << "ClapTrap Destructor called." << std::endl;
 }
-
 ClapTrap &ClapTrap::operator=(ClapTrap &obj)
 {
     this->name = obj.name;
