@@ -17,7 +17,9 @@ class Bureaucrat{
 		int	getGrade(void)const;
 
 		void incrementGrade();
+		void signForm(Form &f);
 		void decrementGrade();
+		std::ostream & operator<<(std::ostream &out, const Bureaucrat& bur);
 
 		class GradeTooHighException : public std::exception{
 			public:

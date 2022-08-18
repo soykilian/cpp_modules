@@ -23,6 +23,12 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj){
 	std::cout << "Copy destructor called"<< std::endl;
 }
 
+std::ostream & operator<<(std::ostream &out, const Bureaucrat& bur)
+{
+    out << bur.getName() << " has grade : " << bur.getGrade();
+    return (out);
+}
+
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj){
 	this->name = obj.getName();
 	this->grade = obj.getGrade();
@@ -50,3 +56,4 @@ void Bureaucrat::decrementGrade(){
 	this->grade++;
 	std::cout << "Decrement grade method called"<< std::endl;
 }
+void signForm(Form &f){}
