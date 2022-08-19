@@ -20,11 +20,6 @@ std::string	RobotomyRequestForm::getTarget(void)const{
 	return (this->target);
 }
 
-void RobotomyRequestForm::executeAction(Bureaucrat const & executor) const{
-	if (executor.getGrade() > this->getGradeToExec())
-	{
-		std::cout << "ATTENTION!! Failure" << std::endl;
-		throw Form::GradeTooLowException();
-	}
+void RobotomyRequestForm::executeAction() const{
 	std::cout << this->getTarget() + "has been robotomized successfully up to 50% of the time" << std::endl;
 }

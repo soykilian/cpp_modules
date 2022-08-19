@@ -1,6 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
-#include <fstream>
-
+#include <fstream> 
 ShrubberyCreationForm::ShrubberyCreationForm(){}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string &target): Form("Shrubbery", 145, 137){
@@ -19,9 +18,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 std::string	ShrubberyCreationForm::getTarget(void)const{
 	return (this->target);
 }
-void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const{
-	if (executor.getGrade() > this->getGradeToExec())
-		throw Form::GradeTooLowException();
+void ShrubberyCreationForm::executeAction() const{
 	std::ofstream	file_out;
 	std::string		name = this->target + "_shrubbery";
 	file_out.open(name.c_str());

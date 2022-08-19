@@ -5,7 +5,7 @@ CC		= c++
 CFLAGS	= -std=c++98 -Werror -Wextra -Wall -pedantic
 
 
-SRCS	= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp
+SRCS	= Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp main.cpp
 
 OBJS	= ${SRCS:.cpp=.o}
 

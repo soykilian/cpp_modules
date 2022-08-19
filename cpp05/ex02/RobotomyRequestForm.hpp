@@ -1,5 +1,5 @@
-#ifndef SHRUBERRYCREATIONFORM_HPP
-#define SHRUBERRYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+#define ROBOTOMYREQUESTFORM_HPP
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
@@ -12,7 +12,7 @@ class RobotomyRequestForm: public Form{
 		~RobotomyRequestForm();
 		RobotomyRequestForm(RobotomyRequestForm const &obj);
 		RobotomyRequestForm &operator=(RobotomyRequestForm const &obj);
-		void executeAction(Bureaucrat const & executor) const; 
+		void executeAction() const; 
 		std::string	getTarget(void)const;
 };
 #endif

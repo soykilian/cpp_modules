@@ -21,11 +21,6 @@ std::string	PresidentialPardonForm::getTarget(void)const{
 	return (this->target);
 }
 
-void PresidentialPardonForm::executeAction(Bureaucrat const & executor) const{
-	if (executor.getGrade() > this->getGradeToExec())
-	{
-		std::cout << "NO PRESIDENTIAL PARDON"<< std::endl;
-		throw Form::GradeTooLowException();
-	}
+void PresidentialPardonForm::executeAction() const{
 	std::cout << this->getTarget() + " has been pardoned by y Zafod Beeblebrox"<< std::endl;
 }
