@@ -4,7 +4,8 @@ CC		= c++
 
 CFLAGS	= -std=c++98 -Werror -Wextra -Wall -pedantic
 
-SRCS	= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp
+
+SRCS	= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp
 
 OBJS	= ${SRCS:.cpp=.o}
 
@@ -27,5 +28,8 @@ fclean:		clean
 bonus: all
 
 re:		fclean all
+
+tags :
+	ctags  ${SRCS}
 
 .PHONY:	clean re fclean bonus all

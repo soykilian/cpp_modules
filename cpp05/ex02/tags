@@ -1,0 +1,16 @@
+Bureaucrat	Bureaucrat.cpp	/^Bureaucrat::Bureaucrat(){$/
+Form	Form.cpp	/^Form::Form(){$/
+Mmain.cpp	main.cpp	/^int main(){$/
+ShrubberyCreationForm	ShrubberyCreationForm.cpp	/^ShrubberyCreationForm::ShrubberyCreationForm(){}$/
+beSigned	Form.cpp	/^void Form::beSigned(Bureaucrat &b){$/
+decrementGrade	Bureaucrat.cpp	/^void Bureaucrat::decrementGrade(){$/
+execute	ShrubberyCreationForm.cpp	/^void ShrubberyCreationForm::execute(Bureaucrat con/
+getGrade	Bureaucrat.cpp	/^int	Bureaucrat::getGrade(void)const{$/
+getGradeToExec	Form.cpp	/^int	Form::getGradeToExec(void)const{$/
+getGradeToSign	Form.cpp	/^int	Form::getGradeToSign(void)const{$/
+getName	Bureaucrat.cpp	/^std::string Bureaucrat::getName(void)const{$/
+getTarget	ShrubberyCreationForm.cpp	/^std::string	ShrubberyCreationForm::getTarget(void)/
+incrementGrade	Bureaucrat.cpp	/^void Bureaucrat::incrementGrade(){$/
+isSigned	Form.cpp	/^bool Form::isSigned(void)const{$/
+operator	Bureaucrat.cpp	/^Bureaucrat &Bureaucrat::operator=(const Bureaucrat/
+signForm	Bureaucrat.cpp	/^void Bureaucrat::signForm(Form &f){$/

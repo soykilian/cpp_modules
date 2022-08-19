@@ -63,3 +63,13 @@ void Form::beSigned(Bureaucrat &b){
 	std::cout << b.getName() << " signed form " << this->getName() << "."<< std::endl;
 	this->signature = true;
 }
+
+void Form::execute(Bureaucrat const & executor) const{
+	if (this->isSigned() == false){
+		std::cout << this->getName() + " is not signed, then it cannot be executed"<< std::endl;
+		throw NotSigned();
+	}
+	std::cout << executor.getName() + " executed " + this->getName() << std::endl;
+	this->executeAction();
+}
+

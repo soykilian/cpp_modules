@@ -19,7 +19,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 std::string	ShrubberyCreationForm::getTarget(void)const{
 	return (this->target);
 }
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
+void ShrubberyCreationForm::executeAction(Bureaucrat const & executor) const{
 	if (executor.getGrade() > this->getGradeToExec())
 		throw Form::GradeTooLowException();
 	std::ofstream	file_out;
