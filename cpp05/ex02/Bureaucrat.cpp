@@ -59,9 +59,17 @@ void Bureaucrat::decrementGrade(){
 	std::cout << "Decrement grade method called"<< std::endl;
 }
 
-void Bureaucrat::signForm(Form &f){
+void Bureaucrat::signForm(Form &f)const{
 	try{
 		f.beSigned(*this);
+	}catch(std::exception &e)
+	{
+		std::cout << this->getName() << " tried to sign " << f.getName() << " but threw an exception: " << e.what() << std::endl;
+	}
+}
+void Bureaucrat::executeForm(Form &f)const{
+	try{
+		f.execute(*this);
 	}catch(std::exception &e)
 	{
 		std::cout << this->getName() << " tried to sign " << f.getName() << " but threw an exception: " << e.what() << std::endl;

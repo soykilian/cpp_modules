@@ -24,25 +24,13 @@ int main(){
 	b->signForm(*pardon);
 	b->signForm(*rob);
 	//b->signForm(*cosas);
-	try{
-		cosas->execute(*b);
-	}catch(std::exception &e){
-		std::cout << a->getName() << " tried to execute" << cosas->getName() << " but threw an exception: " << e.what() << std::endl;
-	}
+	b->executeForm(*cosas);
 	std::cout << "-------------------------------------------------------------------------------------------------------"<< std::endl;
-	try{
-		rob->execute(*a);
-	}catch(std::exception &e){
-		std::cout << a->getName() << " tried to execute" << rob->getName() << " but threw an exception: " << e.what() << std::endl;
-	}
+	a->executeForm(*rob);
 	std::cout << "-------------------------------------------------------------------------------------------------------"<< std::endl;
-	try{
-		pardon->execute(*b);
-	}catch(std::exception &e){
-		std::cout << a->getName() << " tried to execute" << rob->getName() << " but threw an exception: " << e.what() << std::endl;
-	}
+	b->executeForm(*pardon);
 	std::cout << "-------------------------------------------------------------------------------------------------------"<< std::endl;
-	rob->execute(*b);
+	b->executeForm(*rob);
 	std::cout << "-------------------------------------------------------------------------------------------------------"<< std::endl;
 	delete a;
 	delete b;

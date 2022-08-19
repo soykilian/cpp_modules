@@ -21,5 +21,5 @@ std::string	RobotomyRequestForm::getTarget(void)const{
 }
 
 void RobotomyRequestForm::executeAction() const{
-	std::cout << this->getTarget() + "has been robotomized successfully up to 50% of the time" << std::endl;
+	std::cout << this->getTarget() + " has been robotomized successfully up to 50% of the time" << std::endl;
 }

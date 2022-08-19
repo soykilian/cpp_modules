@@ -57,7 +57,7 @@ bool Form::isSigned(void)const{
 	return (this->signature);
 }
 
-void Form::beSigned(Bureaucrat &b){
+void Form::beSigned(Bureaucrat const &b){
 	if (b.getGrade() > this->getGradeToSign())
 		throw GradeTooLowException();
 	std::cout << b.getName() << " signed form " << this->getName() << "."<< std::endl;

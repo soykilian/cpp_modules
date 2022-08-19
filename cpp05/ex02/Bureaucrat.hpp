@@ -19,9 +19,12 @@ class Bureaucrat{
 
 		std::string getName(void)const;
 		int	getGrade(void)const;
+
 		void incrementGrade();
-		void signForm(Form &f);
 		void decrementGrade();
+
+		void signForm(Form &f)const;
+		void executeForm(Form &f)const;
 
 		class GradeTooHighException : public std::exception{
 			public:
