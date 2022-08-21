@@ -15,6 +15,7 @@ void	convert(std::string literal){
 	double toDouble = 0;
 	bool		impossible = false;
 	int 	i = 0;
+
 	std::string	toChar = "";
 	std::string	types[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 	if (!check_printable(literal))
@@ -36,6 +37,7 @@ void	convert(std::string literal){
 		}
 		i++;
 	}
+
 	if (impossible == true)
 	{
 		std::cout << "char: " << "impossible" << std::endl;
@@ -45,6 +47,11 @@ void	convert(std::string literal){
 		return ;
 	}
 	toInt = std::atoi(literal.c_str());
+	if (literal.length() != 1 && toInt == 0 && literal[0] != '0' && literal[0]!= '.')
+	{
+		std::cout << "Keep trying" << std::endl;
+		return ;
+	}
 	if (std::isprint(toInt))
 	{
 		toChar = "'";
