@@ -12,7 +12,14 @@ class Array{
 		size_t getSize(void)const;
 		T* getArray(void)const;
 		T &operator=(const Array &obj);
-		T &operator[](const Array &obj);
+		T &operator[](int i);
+		class IndexException: public std::exception{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Invalid index");
+				}
+		};
 
 	private:
 		size_t size;
@@ -46,6 +53,7 @@ Array<T>::Array(unsigned int n){
 template <typename T>
 Array<T>::~Array(){
 	std::cout << "Array has been deleted"<< std::endl;
+	delete [] array;
 }
 
 template <typename T>
@@ -60,8 +68,23 @@ T* Array<T>::getArray(void)const{
 
 template <typename T>
 T &Array<T>::operator=(const Array &obj){
+	if (this != &obj)
+	{
+		delete [] this->array;
+		this->size = obj.size;
+		array = new T[size];
+		for (size_t i = 0; i < size; i++)
+			array[i] = obj.array[i];
+		std::cout << "Created an array with " << size << "elements with the assingator op"<< std::endl;
+	}
+	return (*this);
 }
 
-T &Array<T>operator[](const Array &obj){
+template <typename T>
+T &Array<T>::operator[](int i){
+	if (i >= static_cast<int>(this->size))
+		throw Array<T>::IndexException();
+	return (this->array[i]);
 }
+
 #endif
