@@ -4,7 +4,7 @@ CC		= c++
 
 CFLAGS	= -std=c++98 -Werror -Wextra -Wall -pedantic
 
-SRCS	= main.cpp Bureaucrat.cpp
+SRCS	= main.cpp Bureaucrat.cpp Form.cpp
 
 OBJS	= ${SRCS:.cpp=.o}
 

@@ -1,6 +1,8 @@
 #ifndef FORM_HPP
 # define FORM_HPP
+#include "Bureaucrat.hpp"
 #include <iostream>
+class Bureaucrat;
 class Form{
 	private:
 		std::string name;
@@ -14,9 +16,7 @@ class Form{
 		Form(std::string name, int gradeToSign, int gradeToExec);
 		Form(const Form &obj);
 		Form &operator=(const Form &obj);
-
 		std::string getName(void)const;
-		std::ostream & operator<<(std::ostream &out, const Form& bur);
 		int	getGradeToSign(void)const;
 		int	getGradeToExec(void)const;
 		bool isSigned(void)const;
@@ -38,4 +38,7 @@ class Form{
 					return "Grade Too Low!";
 				};
 		};
-}
+};
+
+std::ostream &operator<<(std::ostream &out, const Form& bur);
+#endif

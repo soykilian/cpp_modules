@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+
 Bureaucrat::Bureaucrat(){
 	this->name = "Bureaucrat";
 	this->grade = 0;
@@ -23,7 +24,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj){
 	std::cout << "Copy destructor called"<< std::endl;
 }
 
-std::ostream & operator<<(std::ostream &out, const Bureaucrat& bur)
+std::ostream &operator<<(std::ostream &out, const Bureaucrat& bur)
 {
     out << bur.getName() << " has grade : " << bur.getGrade();
     return (out);
@@ -39,6 +40,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj){
 std::string Bureaucrat::getName(void)const{
 	return (this->name);
 }
+
 int	Bureaucrat::getGrade(void)const{
 	return (this->grade);
 }
@@ -56,4 +58,12 @@ void Bureaucrat::decrementGrade(){
 	this->grade++;
 	std::cout << "Decrement grade method called"<< std::endl;
 }
-void signForm(Form &f){}
+
+void Bureaucrat::signForm(Form &f){
+	try{
+		f.beSigned(*this);
+	}catch(std::exception &e)
+	{
+		std::cout << this->getName() << " tried to sign " << f.getName() << " but threw an exception: " << e.what() << std::endl;
+	}
+}

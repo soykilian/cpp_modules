@@ -1,5 +1,4 @@
 #include "Form.hpp"
-
 Form::Form(){
 	this->name = "Default";
 	this->gradeToSign = 150;
@@ -32,13 +31,13 @@ Form &Form::operator=(const Form &obj){
 	this->name = obj.getName();
 	this->gradeToSign = obj.getGradeToSign();
 	this->gradeToExec = obj.getGradeToExec();
-	this->signature = obj.getSignature();
+	this->signature = obj.isSigned();
 	std::cout << "Assignation operator called"<< std::endl;
 	return (*this);
 }
 
 std::ostream & operator<<(std::ostream &out, const Form& bur){
-    out << "Form " << bur.getName() << " requires grade : " << bur.getGradeToSign() << " to be signed and grade: " << bur.getGradeToExec() << " to be executed. State of signature : "<< this->signature << std::endl;
+    out << "Form " << bur.getName() << " requires grade : " << bur.getGradeToSign() << " to be signed and grade: " << bur.getGradeToExec() << " to be executed. State of signature : "<< bur.isSigned() << std::endl;
     return (out);
 }
 
@@ -59,7 +58,7 @@ bool Form::isSigned(void)const{
 }
 
 void Form::beSigned(Bureaucrat &b){
-	if (b.getGrade() > this->getGrade())
+	if (b.getGrade() > this->getGradeToSign())
 		throw GradeTooLowException();
 	std::cout << b.getName() << " signed form " << this->getName() << "."<< std::endl;
 	this->signature = true;
