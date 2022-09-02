@@ -1,8 +1,5 @@
 #include "Form.hpp"
-Form::Form(){
-	this->name = "Default";
-	this->gradeToSign = 150;
-	this->gradeToSign = 150;
+Form::Form(): name("Default"), gradeToSign(150), gradeToExec(150){
 	this->signature = false;
 	std::cout << "Form created"<< std::endl;
 }
@@ -11,27 +8,21 @@ Form::~Form(){
 	std::cout << "Form destroyed"<< std::endl;
 }
 
-Form::Form(std::string name, int gradeToSign, int gradeToExec){
+Form::Form(std::string name, int gradeToSign, int gradeToExec): name(name), gradeToSign(gradeToSign), gradeToExec(gradeToExec){
 	if (gradeToSign < 1 || gradeToExec < 1)
 		throw GradeTooHighException();
 	else if (gradeToSign > 150 || gradeToExec < 1)
 		throw GradeTooLowException();
-	this->name = name;
-	this->gradeToSign = gradeToSign;
-	this->gradeToExec = gradeToExec;
 	this->signature = false;
 }
 
-Form::Form(const Form &obj){
-	*this = obj;
+Form::Form(const Form &obj): name(obj.name),signature(obj.signature), gradeToSign(obj.gradeToSign), gradeToExec(obj.gradeToExec){
 	std::cout << "Copy destructor called"<< std::endl;
 }
 
 Form &Form::operator=(const Form &obj){
-	this->name = obj.getName();
-	this->gradeToSign = obj.getGradeToSign();
-	this->gradeToExec = obj.getGradeToExec();
-	this->signature = obj.isSigned();
+	if (this != &obj)
+		*this = obj;
 	std::cout << "Assignation operator called"<< std::endl;
 	return (*this);
 }

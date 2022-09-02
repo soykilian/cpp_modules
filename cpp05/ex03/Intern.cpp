@@ -34,27 +34,37 @@ static std::string	ft_lowercase(std::string str)
 	return lower;
 }
 
+Form *Intern::makeShrubbery(std::string target){
+	return new ShrubberyCreationForm(target);
+}
+
+Form *Intern::makeRobotomy(std::string target){
+	return new RobotomyRequestForm(target);
+}
+
+Form *Intern::makePresidential(std::string target){
+	return new PresidentialPardonForm(target);
+}
+
 Form *Intern::makeForm(std::string name, std::string target){
 	std::string lower;
 	int i = 0;
-	Form *obj = NULL;
 	static int kforms = 3;
 
 	lower = ft_lowercase(name);
-	t_form forms[3] = {{"shrubbery creation", new ShrubberyCreationForm(target)},
-		{"robotomy request" , new RobotomyRequestForm(target)},
-		{"presidential pardon", new PresidentialPardonForm(target)}};
+	//pointer to functions 
+	t_form forms[3] = {{"shrubbery creation", &Intern::makeShrubbery},
+		{"robotomy request" , &Intern::makeRobotomy},
+		{"presidential pardon", &Intern::makePresidential}};
 	while (i < kforms)
 	{
 		if (forms[i].name == lower)
 		{
-			obj = forms[i].form;
-			break;
+			std::cout << "Intern created " + name + " correclty"<<std::endl;
+			return (this->*(forms[i].func))(target);
 		}
 		i++;
 	}
-	if (obj == NULL)
-		std::cout << "Intern could not find the appropiate form for " + name <<std::endl;
-	std::cout << "Intern created " + name + " correclty"<<std::endl;
-	return obj;
+	std::cout << "Intern could not find the appropiate form for " + name <<std::endl;
+	return NULL;
 }

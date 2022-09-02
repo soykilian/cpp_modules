@@ -1,8 +1,7 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(){
-	this->name = "Bureaucrat";
-	this->grade = 0;
+Bureaucrat::Bureaucrat(): name("Bureaucrat"){
+	this->grade = 150;
 	std::cout << "Bureaucrat created"<< std::endl;
 }
 
@@ -10,12 +9,11 @@ Bureaucrat::~Bureaucrat(){
 	std::cout << "Bureaucrat destroyed"<< std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade){
+Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	this->name = name;
 	this->grade = grade;
 }
 
@@ -31,7 +29,6 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat& bur)
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj){
-	this->name = obj.getName();
 	this->grade = obj.getGrade();
 	std::cout << "Assignation operator called"<< std::endl;
 	return (*this);

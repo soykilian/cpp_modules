@@ -1,6 +1,5 @@
 #include "Bureaucrat.hpp"
-Bureaucrat::Bureaucrat(){
-	this->name = "Bureaucrat";
+Bureaucrat::Bureaucrat(): name("Bureaucrat"){
 	this->grade = 0;
 	std::cout << "Default constructor called"<< std::endl;
 }
@@ -9,25 +8,29 @@ Bureaucrat::~Bureaucrat(){
 	std::cout << "Default destructor called"<< std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade){
+Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	this->name = name;
 	this->grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj){
-	*this = obj;
+Bureaucrat::Bureaucrat(const Bureaucrat &obj): name(obj.name){
+	this->grade = obj.getGrade();
 	std::cout << "Copy destructor called"<< std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj){
-	this->name = obj.getName();
 	this->grade = obj.getGrade();
 	std::cout << "Assignation operator called"<< std::endl;
 	return (*this);
+}
+
+std::ostream &operator<<(std::ostream &out, const Bureaucrat& bur)
+{
+    out << bur.getName() << " has grade : " << bur.getGrade();
+    return (out);
 }
 
 std::string Bureaucrat::getName(void)const{
