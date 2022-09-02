@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): name("Bureaucrat"){
-	this->grade = 0;
+	this->grade = 150;
 	std::cout << "Default constructor called"<< std::endl;
 }
 
