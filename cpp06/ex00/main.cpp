@@ -18,8 +18,6 @@ void	convert(std::string literal){
 
 	std::string	toChar = "";
 	std::string	types[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
-	if (!check_printable(literal))
-		return;
 	if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
 	{
 		std::cout << "char: '" << std::string(literal)[0] << "'" << std::endl;
@@ -90,6 +88,11 @@ int main(int argc, char **argv)
 	{
 		std::cout << "Wrong number of args"<< std::endl;
 		return (1);
+	}
+	if (!check_printable(std::string(argv[1])))
+	{
+		std::cout << "Non printable char"<< std::endl;
+		return 1;
 	}
 	convert(std::string(argv[1]));
 	return (0);
