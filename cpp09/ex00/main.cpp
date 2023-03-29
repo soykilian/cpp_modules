@@ -8,6 +8,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	BitcoinExchange obj(argv[1]);
+	obj.checkAllPrices();
+
 	return (0);
 }
 
