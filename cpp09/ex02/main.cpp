@@ -5,11 +5,11 @@ void printVector(std::vector<int> v)
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		std::cout << v[i] << " ";
-		if (i =4)
+		if (i == 4)
 			break;
 	} 
-	//if (v.size() > 5)
-		//std::cout << "[...]";
+	if (v.size() > 5)
+		std::cout << "[...]";
 	std::cout << std::endl;	
 }
 int main(int argc, char *argv[])
@@ -29,11 +29,14 @@ int main(int argc, char *argv[])
             if (val > 0 && *p == '\0')
 				v.push_back(val);
 			else
+			{
+				std::cout << "Error input format" << std::endl;
 				return (1);
+			}
 		}
 		std::cout << "Before: ";
 		printVector(v);
-		obj.sortVector(v, 0, argc-1, 15);
+		obj.sortVector(v, 0, v.size()-1, 15);
 		std::cout << "After: " ;
 		printVector(v);
 	}

@@ -16,7 +16,7 @@ PmergeMe &PmergeMe::operator=(PmergeMe &obj){
 void insertionSortVector(std::vector<int> &v, int start, int end)
 {
     int i, j, key;
-    for (i = start ; i < end; i++)
+    for (i = start +1; i <= end; i++)
     {
         key = v[i];
         j = i - 1;
@@ -31,7 +31,7 @@ void insertionSortVector(std::vector<int> &v, int start, int end)
 
 static void mergeVector(std::vector<int> &v, int start, int mid, int end)
 {
-    int first_part = mid - start -1;
+    int first_part = mid - start +1;
     int second_part = end - mid;
 
 	std::cout << mid << std::endl;
@@ -40,16 +40,12 @@ static void mergeVector(std::vector<int> &v, int start, int mid, int end)
     for (int i = 0; i < first_part; i++)
         L[i] = v[start + i];
     for (int j = 0; j < second_part ; j++)
-	{
-		//std::cout << mid + 1 + j << std::endl;
-        R[j] = v[mid + j];
-	}
+        R[j] = v[mid + j + 1];
     int i = 0;
     int j = 0;
     int k = start;
     while (i < first_part && j < second_part)
     {
-		std::cout << L[i]<<" "<< R[j]<< std::endl;
         if (L[i] <= R[j])
             v[k] = L[i++];
         else
@@ -57,7 +53,6 @@ static void mergeVector(std::vector<int> &v, int start, int mid, int end)
         k++;
     }
 	std::cout << j << " " << R.size()<< std::endl;
-	std::cout << k << std::endl;
     while (i < first_part)
         v[k++] = L[i++];
     while (j < second_part)
@@ -67,7 +62,6 @@ static void mergeVector(std::vector<int> &v, int start, int mid, int end)
 
 void PmergeMe::sortVector(std::vector<int> &v, int start, int end, int thresh)
 {
-	//std::cout << "start: " << start  << " end: " << end << std::endl;
     if (start < end)
     {
         if (end - start + 1 <= thresh)
@@ -77,8 +71,8 @@ void PmergeMe::sortVector(std::vector<int> &v, int start, int end, int thresh)
         else
         {
             int mid = start + (end - start) / 2;
-            sortVector(v, start, mid-1, thresh);
-            sortVector(v, mid, end, thresh);
+            sortVector(v, start, mid, thresh);
+            sortVector(v, mid+1, end, thresh);
             mergeVector(v, start, mid, end);
         }
     }
