@@ -12,5 +12,6 @@ class PmergeMe{
 		PmergeMe(const PmergeMe	&obj);
 		PmergeMe &operator=(PmergeMe &obj);
 		void sortVector(std::vector<int> &v, int start, int end, int thresh);
+		void PmergeMe::sortList(std::list<int> &l, int start, int end, int thresh);
 };
 #endif

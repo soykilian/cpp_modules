@@ -77,63 +77,92 @@ void PmergeMe::sortVector(std::vector<int> &v, int start, int end, int thresh)
         }
     }
 }
-// Function that sorts a std::list<int> using insertion sort algorithm using std::list<int>::iterator that receives int start, int end and the std::list<int> l
-static void insertionSortList(std::list<int> &l, std::list<int>::iterator start, std::list<int>::iterator end)
-{
-    std::list<int>::iterator i;
-    std::list<int>::iterator j;
-    std::list<int>::iterator key;
-    for (i = std::next(start); i != std::next(end); i++)
-    {
-        key = i;
-        j = std::prev(i);
-        while (j != std::prev(start) && *j > *key)
-        {
-            std::iter_swap(std::next(j), key);
-            j--;
-            key--;
-        }
-    }
-}
 
-// Function that merges two sorted std::list<int> using std::list<int>::iterator and std::next() function
-static void mergeList(std::list<int> &l, std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end)
+void mergeList(std::list<int> &l, int start, int mid, int end)
 {
+    int first_part = mid - start +1;
+    int second_part = end - mid;
+
     std::list<int> L;
     std::list<int> R;
-    std::list<int>::iterator i;
-    std::list<int>::iterator j;
-    for (i = start; i != std::next(mid); i++)
-        L.push_back(*i);
-    for (j = std::next(mid); j != std::next(end); j++)
-        R.push_back(*j);
-    i = L.begin();
-    j = R.begin();
-    while (i != L.end() && j != R.end())
+    std::list<int>::iterator it = l.begin();
+    std::advance(it, start);
+    for (int i = 0; i < first_part; i++)
     {
-        if (*i <= *j)
+        L.push_back(*it);
+        it++;
+    }
+    for (int j = 0; j < second_part ; j++)
+    {
+        R.push_back(*it);
+        it++;
+    }
+    int i = 0;
+    int j = 0;
+    it = l.begin();
+    std::advance(it, start);
+    while (i < first_part && j < second_part)
+    {
+        if (L.front() <= R.front())
         {
-            *start = *i;
+            *it = L.front();
+            L.pop_front();
             i++;
         }
         else
         {
-            *start = *j;
+            *it = R.front();
+            R.pop_front();
             j++;
         }
-        start++;
+        it++;
     }
-    while (i != L.end())
+    while (i < first_part)
     {
-        *start = *i;
+        *it = L.front();
+        L.pop_front();
         i++;
-        start++;
+        it++;
     }
-    while (j != R.end())
+    while (j < second_part)
     {
-        *start = *j;
+        *it = R.front();
+        R.pop_front();
         j++;
-        start++;
+        it++;
+    }
+}
+
+void insertionSortList(std::list<int> &l, int start, int end)
+{
+    std::list<int>::iterator i, j, key;
+    for (i = std::next(l.begin(), start + 1); i != std::next(l.begin(), end + 1); i++)
+    {
+        key = i;
+        j = std::prev(i, 1);
+        while (j != std::prev(l.begin(), start) && *j > *key)
+        {
+            std::iter_swap(std::next(j, 1), j);
+            j = std::prev(j, 1);
+        }
+    }
+}
+
+void PmergeMe::sortList(std::list<int> &l, int start, int end, int thresh)
+{
+    if(start < end)
+    {
+        if (end - start + 1 <= thresh)
+        {
+            insertionSortList(l, start, end);
+        }
+        else
+        {
+            int mid = start + (end - start) / 2;
+            sortList(l, start, mid, thresh);
+            sortList(l, mid+1, end, thresh);
+            mergeList(l, start, mid, end);
+        }
     }
 }
 
