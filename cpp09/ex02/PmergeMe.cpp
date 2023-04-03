@@ -77,6 +77,63 @@ void PmergeMe::sortVector(std::vector<int> &v, int start, int end, int thresh)
         }
     }
 }
-// A function that sorts a std::list<int> using the insertion sort algorithm   
-void InsertionSortList(std::list<int> l, int start, int end, int thresh)
-{}
+// Function that sorts a std::list<int> using insertion sort algorithm using std::list<int>::iterator that receives int start, int end and the std::list<int> l
+static void insertionSortList(std::list<int> &l, std::list<int>::iterator start, std::list<int>::iterator end)
+{
+    std::list<int>::iterator i;
+    std::list<int>::iterator j;
+    std::list<int>::iterator key;
+    for (i = std::next(start); i != std::next(end); i++)
+    {
+        key = i;
+        j = std::prev(i);
+        while (j != std::prev(start) && *j > *key)
+        {
+            std::iter_swap(std::next(j), key);
+            j--;
+            key--;
+        }
+    }
+}
+
+// Function that merges two sorted std::list<int> using std::list<int>::iterator and std::next() function
+static void mergeList(std::list<int> &l, std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end)
+{
+    std::list<int> L;
+    std::list<int> R;
+    std::list<int>::iterator i;
+    std::list<int>::iterator j;
+    for (i = start; i != std::next(mid); i++)
+        L.push_back(*i);
+    for (j = std::next(mid); j != std::next(end); j++)
+        R.push_back(*j);
+    i = L.begin();
+    j = R.begin();
+    while (i != L.end() && j != R.end())
+    {
+        if (*i <= *j)
+        {
+            *start = *i;
+            i++;
+        }
+        else
+        {
+            *start = *j;
+            j++;
+        }
+        start++;
+    }
+    while (i != L.end())
+    {
+        *start = *i;
+        i++;
+        start++;
+    }
+    while (j != R.end())
+    {
+        *start = *j;
+        j++;
+        start++;
+    }
+}
+
