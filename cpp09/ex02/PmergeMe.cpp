@@ -77,3 +77,6 @@ void PmergeMe::sortVector(std::vector<int> &v, int start, int end, int thresh)
         }
     }
 }
+// A function that sorts a std::list<int> using the insertion sort algorithm   
+void InsertionSortList(std::list<int> l, int start, int end, int thresh)
+{}
