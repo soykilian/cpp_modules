@@ -1,4 +1,6 @@
 #include "PmergeMe.hpp"
+#include <iomanip>
+#include <ctime>
 #include <iostream>
 void printVector(std::vector<int> v)
 {
@@ -12,6 +14,17 @@ void printVector(std::vector<int> v)
 		std::cout << "[...]";
 	std::cout << std::endl;	
 }
+
+void printList(std::list<int> v)
+{
+	std::list<int>::iterator i;
+	for (i = v.begin(); i!= v.end(); i++)
+		std::cout << *i << " ";
+	if (v.size() > 5)
+		std::cout << "[...]";
+	std::cout << std::endl;	
+}
+
 int main(int argc, char *argv[])
 {
 	if (argc < 2)
@@ -27,18 +40,51 @@ int main(int argc, char *argv[])
 			strtol(argv[i], &p, 10);
 			val = atoi(argv[i]);
             if (val > 0 && *p == '\0')
+			{
 				v.push_back(val);
+			}
 			else
 			{
 				std::cout << "Error input format" << std::endl;
 				return (1);
 			}
 		}
-		std::cout << "Before: ";
+		std::cout << "Before:\t";
 		printVector(v);
-		obj.sortVector(v, 0, v.size()-1, 15);
-		std::cout << "After: " ;
+		clock_t begin = clock();
+		int thresh = v.size() > 15 ? 15 : v.size();
+		obj.sortVector(v, 0, v.size()-1, thresh);
+		clock_t end = clock();
+        double elapsed = double(end - begin) / CLOCKS_PER_SEC;
+		std::cout << "After:\t" ;
 		printVector(v);
+		std::cout << "Time to process a range of " << v.size() << " elements with std::vector: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " us" << std::endl;
+	}
+	{
+		int val;
+		char *p;
+		for (int i = 1; i< argc; i++)
+		{
+			strtol(argv[i], &p, 10);
+			val = atoi(argv[i]);
+            if (val > 0 && *p == '\0')
+			{
+				l.push_back(val);
+			}
+			else
+			{
+				std::cout << "Error input format" << std::endl;
+				return (1);
+			}
+		}
+		clock_t begin = clock();
+		int thresh = l.size() > 15 ? 15 : l.size();
+		obj.sortList(l, 0, l.size()-1, thresh);
+		clock_t end = clock();
+		//printList(l);
+        double elapsed = double(end - begin) / CLOCKS_PER_SEC;
+		std::cout << "Time to process a range of " << v.size() << " elements with std::list: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " us" << std::endl;
+
 	}
 	return(0);
 }

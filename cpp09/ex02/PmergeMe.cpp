@@ -29,12 +29,28 @@ void insertionSortVector(std::vector<int> &v, int start, int end)
     }
 }
 
+void PmergeMe::insertionSortList(std::list<int> &l, int start, int end)
+{
+	int i, j, key;
+	std::list<int>::iterator iterator= l.begin();
+    for (i = start +1; i <= end; i++)
+    {
+        key = *std::next(iterator, i);
+        j = i - 1;
+        while (j >= start && *std::next(iterator, j) > key)
+        {
+            *std::next(iterator, j+1)= *std::next(iterator, j);
+            j = j - 1;
+        }
+		*std::next(iterator, j + 1) = key;
+    }
+}
+
 static void mergeVector(std::vector<int> &v, int start, int mid, int end)
 {
     int first_part = mid - start +1;
     int second_part = end - mid;
 
-	std::cout << mid << std::endl;
     std::vector<int> L(first_part);
 	std::vector<int> R(second_part);
     for (int i = 0; i < first_part; i++)
@@ -52,7 +68,6 @@ static void mergeVector(std::vector<int> &v, int start, int mid, int end)
             v[k] = R[j++];
         k++;
     }
-	std::cout << j << " " << R.size()<< std::endl;
     while (i < first_part)
         v[k++] = L[i++];
     while (j < second_part)
@@ -97,9 +112,9 @@ void mergeList(std::list<int> &l, int start, int mid, int end)
         R.push_back(*it);
         it++;
     }
+	it = l.begin();
     int i = 0;
     int j = 0;
-    it = l.begin();
     std::advance(it, start);
     while (i < first_part && j < second_part)
     {
@@ -133,20 +148,6 @@ void mergeList(std::list<int> &l, int start, int mid, int end)
     }
 }
 
-void insertionSortList(std::list<int> &l, int start, int end)
-{
-    std::list<int>::iterator i, j, key;
-    for (i = std::next(l.begin(), start + 1); i != std::next(l.begin(), end + 1); i++)
-    {
-        key = i;
-        j = std::prev(i, 1);
-        while (j != std::prev(l.begin(), start) && *j > *key)
-        {
-            std::iter_swap(std::next(j, 1), j);
-            j = std::prev(j, 1);
-        }
-    }
-}
 
 void PmergeMe::sortList(std::list<int> &l, int start, int end, int thresh)
 {
