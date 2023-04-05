@@ -28,6 +28,10 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange &obj){
 
 static bool isDate(const std::string &date)
 {
+	int year, month, day;
+	time_t t;
+    struct tm tm;
+
 	if (date.length() != 10)
 		return false;
 	if (date[4] != '-' || date[7] != '-')
@@ -39,7 +43,19 @@ static bool isDate(const std::string &date)
 		if (date[i] < '0' || date[i] > '9')
 			return false;
 	}
-	return true;
+    year  = atoi(date.substr(0, 4).c_str());
+    month = atoi(date.substr(5, 2).c_str());
+    day   = atoi(date.substr(8, 2).c_str());
+
+    memset(&tm, 0, sizeof(struct tm));
+    tm.tm_year = year - 1900;
+    tm.tm_mon  = month - 1;
+    tm.tm_mday = day;
+    t = mktime(&tm);
+    if (t == -1)
+        return false;
+    return tm.tm_mday == day && tm.tm_mon == month - 1 &&
+           tm.tm_year == year - 1900;
 }
 
 static std::string &rtrim(std::string &s, const char *t)
@@ -84,10 +100,8 @@ void BitcoinExchange::checkAllPrices()
 	{
 		date = line.substr(0, line.find('|'));
         std::string price = line.substr(line.find('|') + 1, line.length());
-
 		date = trim(date, spaces);
 		price = trim(price, spaces);
-
 		if (price.size() == 0 || date.size()==0) 
 		{
 			std::cout << "Error: bad input => " << line << std::endl;
@@ -105,8 +119,7 @@ void BitcoinExchange::checkAllPrices()
 			std::cout << "Error: not a positive number." << std::endl;
 			continue;
 		}
-
-		if ( value>10000)
+		if (value>1000)
 		{
 			std::cout << "Error: too large a number." << std::endl;
 			continue;
@@ -123,7 +136,6 @@ void BitcoinExchange::checkAllPrices()
 
 void BitcoinExchange::load()
 {
-// Function that reads from m_filename and fills m_data
 	std::ifstream file(m_database.c_str(), std::ifstream::in);
 	std::string line;
 	std::string date;

@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 	{
 		int val;
 		char *p;
+		clock_t begin = clock();
 		for (int i = 1; i< argc; i++)
 		{
 			strtol(argv[i], &p, 10);
@@ -51,18 +52,18 @@ int main(int argc, char *argv[])
 		}
 		std::cout << "Before:\t";
 		printVector(v);
-		clock_t begin = clock();
 		int thresh = v.size() > 15 ? 15 : v.size();
 		obj.sortVector(v, 0, v.size()-1, thresh);
 		clock_t end = clock();
-        double elapsed = double(end - begin) / CLOCKS_PER_SEC;
+        double elapsed = double(end - begin) / (CLOCKS_PER_SEC * 10e6);
 		std::cout << "After:\t" ;
 		printVector(v);
-		std::cout << "Time to process a range of " << v.size() << " elements with std::vector: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " us" << std::endl;
+		std::cout << "Time to process a range of " << v.size() << " elements with std::vector: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " seconds" << std::endl;
 	}
 	{
 		int val;
 		char *p;
+		clock_t begin = clock();
 		for (int i = 1; i< argc; i++)
 		{
 			strtol(argv[i], &p, 10);
@@ -77,13 +78,12 @@ int main(int argc, char *argv[])
 				return (1);
 			}
 		}
-		clock_t begin = clock();
 		int thresh = l.size() > 15 ? 15 : l.size();
 		obj.sortList(l, 0, l.size()-1, thresh);
 		clock_t end = clock();
 		//printList(l);
-        double elapsed = double(end - begin) / CLOCKS_PER_SEC;
-		std::cout << "Time to process a range of " << v.size() << " elements with std::list: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " us" << std::endl;
+        double elapsed = double(end - begin) / (CLOCKS_PER_SEC * 10e6);
+		std::cout << "Time to process a range of " << v.size() << " elements with std::list: " << std::fixed << std::setprecision(6) << elapsed*10e6 << " seconds" << std::endl;
 
 	}
 	return(0);

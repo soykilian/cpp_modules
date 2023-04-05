@@ -22,7 +22,10 @@ void RPN::operate(char op){
 	float op1;
 	float op2;
 	if (stack.size() < 2)
-		return;
+	{
+		std::cout <<"Error"<< std::endl;
+		exit(1);
+	}
 	op1 = stack.top();
 	stack.pop();
 	op2 = stack.top();
@@ -70,16 +73,20 @@ void RPN::compute()
 			if (space == true)
 			{
 				std::cout << "Error" << std::endl;
-				return;
+				exit(1);
 			}
 			space = true;
 		}
 		else 
 		{
 			std::cout << "Error" << std::endl;
-			return;
 		} 
 		i++;
+	}
+	if (stack.size() > 1)
+	{
+		std::cout << "Error" << std::endl;
+		exit(1);
 	}
 	std::cout << stack.top() << std::endl;
 }
